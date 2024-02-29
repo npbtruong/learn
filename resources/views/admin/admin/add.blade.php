@@ -30,11 +30,12 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label>Name</label>
-                    <input name="name" type="text" class="form-control" placeholder="Enter Name" required>
+                    <input name="name" type="text" class="form-control" placeholder="Enter Name" value="{{ old('name') }}" required>
                   </div>
                   <div class="form-group">
                     <label>Email</label>
-                    <input name="email" type="email" class="form-control" placeholder="Enter Email" required>
+                    <input name="email" type="email" class="form-control" placeholder="Enter Email" value="{{ old('email') }}" required>
+                    <div style="color: red;">{{ $errors->first('email') }}</div>
                   </div>
                   <div class="form-group">
                     <label>Password</label>
@@ -43,8 +44,8 @@
                   <div class="form-group">
                     <label>Status</label>
                     <select name="status" class="form-control" required>
-                      <option value="0">Active</option>
-                      <option value="1">InActive</option>
+                      <option {{ (old('status') == 0) ? 'selected':'' }} value="0">Active</option>
+                      <option {{ (old('status') == 1) ? 'selected':'' }} value="1">InActive</option>
                     </select>
                   </div>
                 </div>

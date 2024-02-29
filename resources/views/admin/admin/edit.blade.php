@@ -30,11 +30,12 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label>Name</label>
-                    <input value="{{ $getRecord->name }}" name="name" type="text" class="form-control" placeholder="Enter Name" required>
+                    <input value="{{ old('name',$getRecord->name) }}" name="name" type="text" class="form-control" placeholder="Enter Name" required>
                   </div>
                   <div class="form-group">
                     <label>Email</label>
-                    <input value="{{ $getRecord->email }}" name="email" type="email" class="form-control" placeholder="Enter Email" required>
+                    <input value="{{ old('email',$getRecord->email) }}" name="email" type="email" class="form-control" placeholder="Enter Email" required>
+                    <div style="color: red;">{{ $errors->first('email') }}</div>
                   </div>
                   <div class="form-group">
                     <label>Password</label>
