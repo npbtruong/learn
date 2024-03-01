@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,8 @@ Route::group(['middleware'=>'admin'], function(){
 
     Route::get('admin/dashboard',[DashboardController::class, 'dashboard']);
 
+    
+    // --------------------------------
     Route::get('admin/admin/list',[AdminController::class,'list']);
     Route::get('admin/admin/add',[AdminController::class,'add']);
     Route::post('admin/admin/add',[AdminController::class,'insert']);
@@ -39,6 +42,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/admin/delete/{id}',[AdminController::class,'delete']);
 
 
+    // --------------------------------
     Route::get('admin/category/list',[CategoryController::class,'list']);
     Route::get('admin/category/add',[CategoryController::class,'add']);
     Route::post('admin/category/add',[CategoryController::class,'insert']);
@@ -48,7 +52,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/category/delete/{id}',[CategoryController::class,'delete']);
 
 
-    
+    // --------------------------------
     Route::get('admin/sub_category/list',[SubCategoryController::class,'list']);
     Route::get('admin/sub_category/add',[SubCategoryController::class,'add']);
     Route::post('admin/sub_category/add',[SubCategoryController::class,'insert']);
@@ -56,6 +60,18 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/sub_category/edit/{id}',[SubCategoryController::class,'edit']);
     Route::post('admin/sub_category/edit/{id}',[SubCategoryController::class,'update']);
     Route::get('admin/sub_category/delete/{id}',[SubCategoryController::class,'delete']);
+
+
+    // --------------------------------
+    Route::get('admin/product/list',[ProductController::class,'list']);
+    Route::get('admin/product/add',[ProductController::class,'add']);
+    Route::post('admin/product/add',[ProductController::class,'insert']);
+
+    Route::get('admin/product/edit/{id}',[ProductController::class,'edit']);
+    Route::post('admin/product/edit/{id}',[ProductController::class,'update']);
+    Route::get('admin/product/delete/{id}',[ProductController::class,'delete']);
+
+
 
     
 });
