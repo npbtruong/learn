@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
@@ -70,6 +71,15 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/product/edit/{id}',[ProductController::class,'edit']);
     Route::post('admin/product/edit/{id}',[ProductController::class,'update']);
     Route::get('admin/product/delete/{id}',[ProductController::class,'delete']);
+
+    // --------------------------------
+    Route::get('admin/brand/list',[BrandController::class,'list']);
+    Route::get('admin/brand/add',[BrandController::class,'add']);
+    Route::post('admin/brand/add',[BrandController::class,'insert']);
+
+    Route::get('admin/brand/edit/{id}',[BrandController::class,'edit']);
+    Route::post('admin/brand/edit/{id}',[BrandController::class,'update']);
+    Route::get('admin/brand/delete/{id}',[BrandController::class,'delete']);
 
 
 

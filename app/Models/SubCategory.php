@@ -14,7 +14,7 @@ class SubCategory extends Model
     static public function getSubcategories(){
         return self::select('sub_categories.*','users.name as created_by_name','categories.name as category_name')
         ->join('categories', 'categories.id', '=', 'sub_categories.category_id')
-        ->join('users', 'users.id', '=', 'sub_categories.create_by')
+        ->join('users', 'users.id', '=', 'sub_categories.created_by')
         ->where('sub_categories.is_delete','=',0)
         ->orderBy('sub_categories.id','desc')
         ->paginate(5);

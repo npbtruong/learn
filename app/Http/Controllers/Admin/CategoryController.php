@@ -35,7 +35,7 @@ class CategoryController extends Controller
         $category->meta_title = trim($request->meta_title);
         $category->meta_description = trim($request->meta_description);
         $category->meta_keywords = trim($request->meta_keywords);
-        $category->create_by = Auth::user()->id;
+        $category->created_by = Auth::user()->id;
         $category->save();
 
         return redirect('admin/category/list')->with('success', 'Category added successfully');
