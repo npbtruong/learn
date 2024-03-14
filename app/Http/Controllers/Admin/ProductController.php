@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     //
     public function list(){
-        //$data['getRecord'] = Product::getProducts();
+        $data['getRecord'] = Product::getProducts();
         $data['header_title'] = 'Product';
         return view('admin.product.list', $data);
     }

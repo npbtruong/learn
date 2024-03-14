@@ -16,7 +16,8 @@ class Product extends Model
         ->join('users', 'users.id', '=', 'products.created_by')
         ->where('products.is_delete','=',0)
         ->orderBy('products.id','desc')
-        ->get();
+        ->paginate(2);
+        
     }
 
     static function getSingle($id){

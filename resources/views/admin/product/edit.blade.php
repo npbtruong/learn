@@ -6,48 +6,233 @@
 @section('content')
 
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Edit Product</h1>
-          </div>  
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-12">
+          <h1>Edit Product</h1>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-        
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+
         <div class="col-md-12">
-            <!-- general form elements -->
-            <div class="card card-primary">
-              <form action="" method="post">
-                {{ csrf_field() }}
-                <div class="card-body">
-                  <div class="form-group">
-                    <label>Title <span style="color: red;">*</span> </label>
-                    <input name="title" type="text" class="form-control" placeholder="Title" value="{{ old('title',$product->title) }}" required>
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <form action="" method="post">
+              {{ csrf_field() }}
+              <div class="card-body">
+
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Title <span style="color: red;">*</span> </label>
+                      <input name="title" type="text" class="form-control" placeholder="Title" value="{{ old('title',$product->title) }}" required>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>SKU <span style="color: red;">*</span> </label>
+                      <input name="sku" type="text" class="form-control" placeholder="SKU" value="{{ old('sku',$product->sku) }}" required>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Category <span style="color: red;">*</span> </label>
+                      <select class="form-control" name="category_id">
+                        <option value="">Select</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Sub Category <span style="color: red;">*</span> </label>
+                      <select class="form-control" name="sub_category_id">
+                        <option value="">Select</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Brand <span style="color: red;">*</span> </label>
+                      <select class="form-control" name="brand_id">
+                        <option value="">Select</option>
+                      </select>
+                    </div>
                   </div>
 
                 </div>
-                <!-- /.card-body -->
 
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Color <span style="color: red;">*</span> </label>
+                      <div>
+                        <label><input type="checkbox" name="color_id[]"> Red</label>
+                      </div>
+                      <div>
+                        <label><input type="checkbox" name="color_id[]"> White</label>
+                      </div>
+                      <div>
+                        <label><input type="checkbox" name="color_id[]"> Blue</label>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </form>
-            </div>
-            <!-- /.card -->
+
+                <hr>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Price <span style="color: red;">*</span> </label>
+                        <input name="price" type="text" class="form-control" placeholder="Price" value="" required>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Old Price <span style="color: red;">*</span> </label>
+                        <input name="old_price" type="text" class="form-control" placeholder="Old Price" value="" required>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Size <span style="color: red;">*</span> </label>
+                        <div>
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <input type="text" name="" class="form-control">
+                                </td>
+                                <td>
+                                  <input type="text" name="" class="form-control">
+                                </td>
+                                <td>
+                                  <button type="button" class="btn btn-primary">Add</button>
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <input type="text" name="" class="form-control">
+                                </td>
+                                <td>
+                                  <input type="text" name="" class="form-control">
+                                </td>
+                                <td>
+                                  
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <input type="text" name="" class="form-control">
+                                </td>
+                                <td>
+                                  <input type="text" name="" class="form-control">
+                                </td>
+                                <td>
+                                  
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </hr>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Short Description <span style="color: red;">*</span> </label>
+                      <textarea name="short_description" class="form-control" placeholder="Short Description"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label> Description <span style="color: red;">*</span> </label>
+                      <textarea name="description" class="form-control" placeholder="Description"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Additional Information <span style="color: red;">*</span> </label>
+                      <textarea name="additional_information" class="form-control" placeholder="Additional Information"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Shipping Returns <span style="color: red;">*</span> </label>
+                      <textarea name="shipping_returns" class="form-control" placeholder="Shipping Returns"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <hr/>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Status <span style="color: red;">*</span> </label>
+                        <select name="status" class="form-control" required>
+                          <option {{ (old('status') == 0) ? 'selected':'' }} value="0">Active</option>
+                          <option {{ (old('status') == 1) ? 'selected':'' }} value="1">InActive</option>
+                        </select>
+                    </div>  
+                  </div>
+                </div>
+
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
           </div>
-        </div>    
-        
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+          <!-- /.card -->
+        </div>
+      </div>
+
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
 </div>
 
 @endsection
