@@ -19,6 +19,15 @@ class Category extends Model
         ->get();
     }
 
+    static public function getCategoriesActive(){
+        return self::select('categories.*')
+        ->join('users', 'users.id', '=', 'categories.created_by')
+        ->where('categories.is_delete','=',0)
+        ->where('categories.status','=',0)
+        ->orderBy('categories.name','asc')
+        ->get();
+    }
+
     static function getSingle($id){
         return self::find($id);
     }
