@@ -116,14 +116,14 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Price 💵<span style="color: red;">*</span> </label>
-                      <input name="price" type="text" class="form-control" placeholder="Price" value="{{ !empty($product->price) ? $$product->price : '' }}" required>
+                      <input name="price" type="text" class="form-control" placeholder="Price" value="{{ !empty($product->price) ? $product->price : '' }}" required>
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Old Price 💵<span style="color: red;">*</span> </label>
-                      <input name="old_price" type="text" class="form-control" placeholder="Old Price" value="{{ !empty($product->old_price) ? $$product->old_price : '' }}" required>
+                      <input name="old_price" type="text" class="form-control" placeholder="Old Price" value="{{ !empty($product->old_price) ? $product->old_price : '' }}" required>
                     </div>
                   </div>
                 </div>
