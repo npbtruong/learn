@@ -16,7 +16,7 @@ class Product extends Model
         ->join('users', 'users.id', '=', 'products.created_by')
         ->where('products.is_delete','=',0)
         ->orderBy('products.id','desc')
-        ->paginate(2);
+        ->paginate(4);
         
     }
 
@@ -31,5 +31,10 @@ class Product extends Model
     public function getColor()
     {
         return $this->hasMany(ProductColor::class, 'product_id');
+    }
+
+    public function getSize()
+    {
+        return $this->hasMany(ProductSize::class, 'product_id');
     }
 }

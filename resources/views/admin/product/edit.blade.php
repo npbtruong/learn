@@ -116,14 +116,14 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Price 💵<span style="color: red;">*</span> </label>
-                      <input name="price" type="text" class="form-control" placeholder="Price" value="{{ $product->price }}" required>
+                      <input name="price" type="text" class="form-control" placeholder="Price" value="{{ !empty($product->price) ? $$product->price : '' }}" required>
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Old Price 💵<span style="color: red;">*</span> </label>
-                      <input name="old_price" type="text" class="form-control" placeholder="Old Price" value="{{ $product->old_price }}" required>
+                      <input name="old_price" type="text" class="form-control" placeholder="Old Price" value="{{ !empty($product->old_price) ? $$product->old_price : '' }}" required>
                     </div>
                   </div>
                 </div>
@@ -142,16 +142,35 @@
                             </tr>
                           </thead>
                           <tbody id="AppendSize">
+                            @php
+                              $i_s = 1;
+                            @endphp
+                            @foreach ($product->getSize as $size)
+                              <tr id="RemoveSize{{ $i_s }}">
+                                <td>
+                                  <input type="text" value="{{ $size->name }}" name="size[{{$i_s}}][name]"  placeholder="Name" class="form-control">
+                                </td>
+                                <td>
+                                  <input type="text" value="{{ $size->price }}" name="size[{{$i_s}}][price]"  placeholder="Price" class="form-control">
+                                </td>
+                                <td style="width: 200px;">
+                                  <button type="button" id="{{$i_s}}" class="btn btn-danger RemoveSize">Remove</button>
+                                </td>
+                              </tr>
+                            @endforeach
+                            @php
+                              $i_s++;
+                            @endphp
+
                             <tr>
                               <td>
-                                <input type="text" name=""  placeholder="Name" class="form-control">
+                                <input type="text" name="size[100][name]"  placeholder="Name" class="form-control">
                               </td>
                               <td>
-                                <input type="text" name=""  placeholder="Price" class="form-control">
+                                <input type="text" name="size[100][price]"  placeholder="Price" class="form-control">
                               </td>
                               <td style="width: 200px;">
                                 <button type="button" class="btn btn-primary AddSize">Add</button>
-                                
                               </td>
                             </tr>
 
@@ -234,11 +253,11 @@
 
 @section('script')
 <script type="text/javascript">
-  var i = 1000;
+  var i = 101;
   $('body').delegate('.AddSize', 'click', function() {
     var html = '<tr id="RemoveSize'+i+'">';
-    html += '<td><input type="text" name="" placeholder="Name" value="'+i+'" class="form-control"></td>';
-    html += '<td><input type="text" name="" placeholder="Price" class="form-control"></td>';
+    html += '<td><input type="text" name="size['+i+'][name]" placeholder="Name" value="'+i+'" class="form-control"></td>';
+    html += '<td><input type="text" name="size['+i+'][price]" placeholder="Price" class="form-control"></td>';
     html += '<td><button type="button" id="'+i+'" class="btn btn-danger RemoveSize">Remove</button></td>';
     html += '</tr>';
     i++;
