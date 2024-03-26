@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductColor;
+use App\Models\ProductImage;
 use App\Models\ProductSize;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -71,7 +72,8 @@ class ProductController extends Controller
 
         $product = Product::getSingle($product_id);
         if(!empty($product))
-        {
+        {           
+
             $product->title = trim($request->title);
             $product->sku = trim($request->sku);
             $product->category_id = $request->category_id;
@@ -113,6 +115,30 @@ class ProductController extends Controller
                     }
                 }
             }
+
+
+            if(!empty($request->file('image')))
+            {
+                foreach($request->file('image') as $value)
+                {
+                    if($value->isValid())
+                    {
+                        $ext = $value->getClientOriginalExtension();
+                        $randomStr = $product->id.Str::random(20);
+                        $filename = strtolower($randomStr).'.'.$ext;
+                        $value->move('upload/product/', $filename);
+                        //$value->storeAs('upload/product/', $filename);
+                        $imageupload = new ProductImage;
+                        $imageupload->product_id = $product->id;
+                        $imageupload->image_name = $filename;
+                        $imageupload->image_extension = $ext;
+
+                        $imageupload->save();
+
+                    }
+                }
+            }
+
             
             return redirect()->back()->with('success', 'Product updated successfully');
             

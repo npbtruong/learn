@@ -28,7 +28,7 @@
 
           <!-- general form elements -->
           <div class="card card-primary">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
               <div class="card-body">
 
@@ -182,7 +182,18 @@
                   </div>
                 </div>
 
-                </hr>
+                <hr>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Image <span style="color: red;">*</span> </label>
+                      <input type="file" name="image[]" class="form-control" style="padding:5px;" multiple accept="image/*">
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
 
                 <div class="row">
                   <div class="col-md-12">
