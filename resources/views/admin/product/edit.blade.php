@@ -194,13 +194,13 @@
                 </div>
 
                 @if (!empty($product->getImage->count()))
-                  <div class="row">
+                  <div class="row" id="sortable">
 
                     @foreach ($product->getImage as $image )
 
                       @if (!empty($image->getLogo()))
-                        <div class="col-md-1" style="text-align: center;">
-                           <img src="{{ $image->getLogo() }}" alt="" style="width: 40%;">
+                        <div id="{{ $image->id }}" class="col-md-1 sortable_image" style="text-align: center; padding: 0.4em;">
+                           <img src="{{ $image->getLogo() }}" alt="" style="width: 50%;">
                            <a onclick="return confirm('Are you sure you want to delete?');" href="{{ url('admin/product/image_delete/'.$image->id) }}" class="btn btn-danger btn-sm" style="margin-top: 10px;">Delete</a>
                         </div> 
                       @endif
@@ -280,7 +280,40 @@
 @endsection
 
 @section('script')
+<script src="{{ url('sortable/jquery-ui.js') }}"></script>
+
 <script type="text/javascript">
+
+  $(document).ready(function() {
+      $( "#sortable" ).sortable({
+          update : function(event, ui) 
+          {
+              var photo_id = new Array();
+              $('.sortable_image').each(function(){
+                  var id = $(this).attr('id');
+                  photo_id.push(id);
+              });
+
+              $.ajax({
+                type: "POST",
+                url: "{{ url('admin/product_image_sortable') }}",
+                data: {
+                  "photo_id": photo_id,
+                  "_token": "{{ csrf_token() }}"
+                },
+                dataType: "json",
+                success: function(data) {
+                   
+                },
+                error: function(data) {
+
+                }
+              });
+
+          }
+      });
+  })
+
   var i = 101;
   $('body').delegate('.AddSize', 'click', function() {
     var html = '<tr id="RemoveSize'+i+'">';

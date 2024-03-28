@@ -161,4 +161,24 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product Image successfully Deleted');
     }
 
+    public function product_image_sortable(Request $request)
+    {
+        //
+        if(!empty($request->photo_id))
+        {
+            $i = 1;
+            foreach($request->photo_id as $photo_id)
+            {
+                $image = ProductImage::getSingle($photo_id);
+                $image->order_by = $i;
+                $image->save();
+
+                $i++;
+            }
+        }
+
+        $json['success'] = true;
+        echo json_encode($json);
+    }
+
 }
