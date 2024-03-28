@@ -193,6 +193,23 @@
                   </div>
                 </div>
 
+                @if (!empty($product->getImage->count()))
+                  <div class="row">
+
+                    @foreach ($product->getImage as $image )
+
+                      @if (!empty($image->getLogo()))
+                        <div class="col-md-1" style="text-align: center;">
+                           <img src="{{ $image->getLogo() }}" alt="" style="width: 40%;">
+                           <a onclick="return confirm('Are you sure you want to delete?');" href="{{ url('admin/product/image_delete/'.$image->id) }}" class="btn btn-danger btn-sm" style="margin-top: 10px;">Delete</a>
+                        </div> 
+                      @endif
+                         
+                    @endforeach
+                    
+                  </div>
+                @endif
+
                 <hr>
 
                 <div class="row">

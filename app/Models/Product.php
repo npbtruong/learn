@@ -37,4 +37,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductSize::class, 'product_id');
     }
+
+    public function getImage()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id');
+    }
 }
