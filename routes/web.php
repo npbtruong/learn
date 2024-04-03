@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -102,8 +103,6 @@ Route::group(['middleware'=>'admin'], function(){
 });
 
 
+Route::get('/',[HomeController::class,'home']);
 
 
-Route::get('/', function () {
-    return view('welcome');
-});

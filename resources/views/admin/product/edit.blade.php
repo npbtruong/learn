@@ -199,8 +199,8 @@
                     @foreach ($product->getImage as $image )
 
                       @if (!empty($image->getLogo()))
-                        <div id="{{ $image->id }}" class="col-md-1 sortable_image" style="text-align: center; padding: 0.4em;">
-                           <img src="{{ $image->getLogo() }}" alt="" style="width: 50%;">
+                        <div id="{{ $image->id }}" class="col-1 sortable_image" style="text-align: center; padding: 0.4em;margin: 0.4em;">
+                           <img src="{{ $image->getLogo() }}" alt="" style="width: 100%;">
                            <a onclick="return confirm('Are you sure you want to delete?');" href="{{ url('admin/product/image_delete/'.$image->id) }}" class="btn btn-danger btn-sm" style="margin-top: 10px;">Delete</a>
                         </div> 
                       @endif
