@@ -41,7 +41,7 @@
 <!-- OPTIONAL SCRIPTS -->
 <script src="{{ url('/assets/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ url('/assets/dist/js/demo.js')}}"></script>
+<!-- <script src="{{ url('/assets/dist/js/demo.js')}}"></script> -->
 
 
 @yield('script')

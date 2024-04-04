@@ -64,21 +64,22 @@
                                             <div class="col-md-12">
                                                 <div class="menu-col">
                                                     <div class="row">
-                                                        
-                                                        @for($i=1;$i<=5;$i++)
+                                                        @php
+                                                            $getCategories = App\Models\Category::getCategoriesMenu();
+                                                            
+                                                        @endphp
+                                                        @foreach ($getCategories as $value_category_header)
                                                         <div class="col-md-4" style="margin-bottom:20px">
-                                                            <a href="" class="menu-title">Shop with sidebar</a><!-- End .menu-title -->
+                                                            <a href="{{ url($value_category_header->slug) }}" class="menu-title">{{ $value_category_header->name }}</a><!-- End .menu-title -->
                                                             <ul>
-                                                                <li><a href="category-list.html">Shop List</a></li>
-                                                                <li><a href="category-2cols.html">Shop Grid 2 Columns</a></li>
-                                                                <li><a href="category.html">Shop Grid 3 Columns</a></li>
-                                                                <li><a href="category-4cols.html">Shop Grid 4 Columns</a></li>
-                                                                <li><a href="category-market.html"><span>Shop Market<span class="tip tip-new">New</span></span></a></li>
+                                                                @foreach ($value_category_header->getSubCategory as $value_sub_category_header)    
+                                                                    <li><a href="{{ url($value_category_header->slug.'/'.$value_sub_category_header->slug) }}">{{$value_sub_category_header->name}}</a></li>
+                                                                @endforeach
+                                                               
                                                             </ul>
 
-                                                            
                                                         </div><!-- End .col-md-6 -->
-                                                        @endfor
+                                                        @endforeach
 
                                                         
                                                     </div><!-- End .row -->

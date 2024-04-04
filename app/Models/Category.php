@@ -31,4 +31,20 @@ class Category extends Model
     static function getSingle($id){
         return self::find($id);
     }
+
+    static public function getCategoriesMenu(){
+        return self::select('categories.*')
+        ->join('users', 'users.id', '=', 'categories.created_by')
+        ->where('categories.is_delete','=',0)
+        ->where('categories.status','=',0)
+        ->get();
+    }
+
+    public function getSubCategory()
+    {
+        return $this->hasMany(SubCategory::class, 'category_id')
+                    ->where('sub_categories.is_delete','=',0)
+                    ->where('sub_categories.status','=',0);
+    }
+
 }
