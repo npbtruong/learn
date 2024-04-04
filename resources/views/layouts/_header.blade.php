@@ -69,16 +69,18 @@
                                                             
                                                         @endphp
                                                         @foreach ($getCategories as $value_category_header)
-                                                        <div class="col-md-4" style="margin-bottom:20px">
-                                                            <a href="{{ url($value_category_header->slug) }}" class="menu-title">{{ $value_category_header->name }}</a><!-- End .menu-title -->
-                                                            <ul>
-                                                                @foreach ($value_category_header->getSubCategory as $value_sub_category_header)    
-                                                                    <li><a href="{{ url($value_category_header->slug.'/'.$value_sub_category_header->slug) }}">{{$value_sub_category_header->name}}</a></li>
-                                                                @endforeach
-                                                               
-                                                            </ul>
+                                                            @if(!empty($value_category_header->getSubCategory->count()))
+                                                                <div class="col-md-4" style="margin-bottom:20px">
+                                                                    <a href="{{ url($value_category_header->slug) }}" class="menu-title">{{ $value_category_header->name }}</a><!-- End .menu-title -->
+                                                                    <ul>
+                                                                        @foreach ($value_category_header->getSubCategory as $value_sub_category_header)    
+                                                                            <li><a href="{{ url($value_category_header->slug.'/'.$value_sub_category_header->slug) }}">{{$value_sub_category_header->name}}</a></li>
+                                                                        @endforeach
+                                                                    
+                                                                    </ul>
 
-                                                        </div><!-- End .col-md-6 -->
+                                                                </div><!-- End .col-md-6 -->
+                                                            @endif
                                                         @endforeach
 
                                                         
