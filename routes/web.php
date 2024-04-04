@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\ProductController as ProductFront;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -104,5 +105,6 @@ Route::group(['middleware'=>'admin'], function(){
 
 
 Route::get('/',[HomeController::class,'home']);
+Route::get('{slug?}',[ProductFront::class,'getCategory']);
 
 

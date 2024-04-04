@@ -32,6 +32,12 @@ class Category extends Model
         return self::find($id);
     }
 
+    static function getSingleSlug($slug){
+        return self::where('slug', '=', $slug)
+                ->where('categories.is_delete','=',0)
+                ->where('categories.status','=',0)->first();
+    }
+
     static public function getCategoriesMenu(){
         return self::select('categories.*')
         ->join('users', 'users.id', '=', 'categories.created_by')
