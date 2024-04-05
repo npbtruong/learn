@@ -35,4 +35,10 @@ class SubCategory extends Model
     static function getSingle($id){
         return self::find($id);
     }
+
+    static function getSingleSlug($slug){
+        return self::where('slug', '=', $slug)
+                ->where('sub_categories.is_delete','=',0)
+                ->where('sub_categories.status','=',0)->first();
+    }
 }

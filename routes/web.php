@@ -105,6 +105,6 @@ Route::group(['middleware'=>'admin'], function(){
 
 
 Route::get('/',[HomeController::class,'home']);
-Route::get('{slug?}',[ProductFront::class,'getCategory']);
+Route::get('{category?}/{subcategory?}',[ProductFront::class,'getCategory']);
 
 

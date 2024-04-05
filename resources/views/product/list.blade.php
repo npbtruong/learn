@@ -4,7 +4,11 @@
 <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         		<div class="container">
-        			<h1 class="page-title">{{ $getCategory->name }}</h1>
+                    @if (!empty($getSubCategory))
+                        <h1 class="page-title">{{ $getSubCategory->name }}</h1>
+                    @else
+                        <h1 class="page-title">{{ $getCategory->name }}</h1>
+                    @endif
         		</div><!-- End .container -->
         	</div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
@@ -12,7 +16,19 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('') }}">Home</a></li>
                         <li class="breadcrumb-item"><a href="javascript:;">Shop</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ $getCategory->name }}</li>
+                        @if (!empty($getSubCategory))
+                            <li class="breadcrumb-item active" aria-current="page"> 
+                                <a href="{{ url($getCategory->slug) }}"> {{ $getCategory->name }} </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page"> 
+                                <a href="{{ url($getCategory->slug.'/'.$getSubCategory->slug) }}"> {{ $getSubCategory->name }} </a>
+                            </li>
+                        @else
+                            <li class="breadcrumb-item active" aria-current="page"> 
+                                <a href="{{ url($getCategory->slug) }}"> {{ $getCategory->name }} </a> 
+                            </li>
+                        @endif
+                        
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
@@ -50,7 +66,7 @@
                                             <figure class="product-media">
                                                 <span class="product-label label-new">New</span>
                                                 <a href="product.html">
-                                                    <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
+                                                    <img src="{{ url('') }}/assets/images/products/product-4.jpg" alt="Product image" class="product-image">
                                                 </a>
 
                                                 <div class="product-action-vertical">
@@ -81,14 +97,14 @@
 
                                                 <div class="product-nav product-nav-thumbs">
                                                     <a href="#" class="active">
-                                                        <img src="assets/images/products/product-4-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-4-thumb.jpg" alt="product desc">
                                                     </a>
                                                     <a href="#">
-                                                        <img src="assets/images/products/product-4-2-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-4-2-thumb.jpg" alt="product desc">
                                                     </a>
 
                                                     <a href="#">
-                                                        <img src="assets/images/products/product-4-3-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-4-3-thumb.jpg" alt="product desc">
                                                     </a>
                                                 </div><!-- End .product-nav -->
                                             </div><!-- End .product-body -->
@@ -99,7 +115,7 @@
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
                                                 <a href="product.html">
-                                                    <img src="assets/images/products/product-5.jpg" alt="Product image" class="product-image">
+                                                    <img src="{{ url('') }}/assets/images/products/product-5.jpg" alt="Product image" class="product-image">
                                                 </a>
 
                                                 <div class="product-action-vertical">
@@ -130,10 +146,10 @@
 
                                                 <div class="product-nav product-nav-thumbs">
                                                     <a href="#" class="active">
-                                                        <img src="assets/images/products/product-5-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-5-thumb.jpg" alt="product desc">
                                                     </a>
                                                     <a href="#">
-                                                        <img src="assets/images/products/product-5-2-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-5-2-thumb.jpg" alt="product desc">
                                                     </a>
                                                 </div><!-- End .product-nav -->
                                             </div><!-- End .product-body -->
@@ -145,7 +161,7 @@
                                             <figure class="product-media">
                                                 <span class="product-label label-out">Out of Stock</span>
                                                 <a href="product.html">
-                                                    <img src="assets/images/products/product-6.jpg" alt="Product image" class="product-image">
+                                                    <img src="{{ url('') }}/assets/images/products/product-6.jpg" alt="Product image" class="product-image">
                                                 </a>
 
                                                 <div class="product-action-vertical">
@@ -181,7 +197,7 @@
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
                                                 <a href="product.html">
-                                                    <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
+                                                    <img src="{{ url('') }}/assets/images/products/product-7.jpg" alt="Product image" class="product-image">
                                                 </a>
 
                                                 <div class="product-action-vertical">
@@ -218,7 +234,7 @@
                                             <figure class="product-media">
                                                 <span class="product-label label-new">New</span>
                                                 <a href="product.html">
-                                                    <img src="assets/images/products/product-8.jpg" alt="Product image" class="product-image">
+                                                    <img src="{{ url('') }}/assets/images/products/product-8.jpg" alt="Product image" class="product-image">
                                                 </a>
 
                                                 <div class="product-action-vertical">
@@ -249,10 +265,10 @@
 
                                                 <div class="product-nav product-nav-thumbs">
                                                     <a href="#" class="active">
-                                                        <img src="assets/images/products/product-8-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-8-thumb.jpg" alt="product desc">
                                                     </a>
                                                     <a href="#">
-                                                        <img src="assets/images/products/product-8-2-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-8-2-thumb.jpg" alt="product desc">
                                                     </a>
                                                 </div><!-- End .product-nav -->
                                             </div><!-- End .product-body -->
@@ -263,7 +279,7 @@
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
                                                 <a href="product.html">
-                                                    <img src="assets/images/products/product-9.jpg" alt="Product image" class="product-image">
+                                                    <img src="{{ url('') }}/assets/images/products/product-9.jpg" alt="Product image" class="product-image">
                                                 </a>
 
                                                 <div class="product-action-vertical">
@@ -294,13 +310,13 @@
 
                                                 <div class="product-nav product-nav-thumbs">
                                                     <a href="#" class="active">
-                                                        <img src="assets/images/products/product-9-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-9-thumb.jpg" alt="product desc">
                                                     </a>
                                                     <a href="#">
-                                                        <img src="assets/images/products/product-9-2-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-9-2-thumb.jpg" alt="product desc">
                                                     </a>
                                                     <a href="#">
-                                                        <img src="assets/images/products/product-9-3-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-9-3-thumb.jpg" alt="product desc">
                                                     </a>
                                                 </div><!-- End .product-nav -->
                                             </div><!-- End .product-body -->
@@ -312,7 +328,7 @@
                                             <figure class="product-media">
                                                 <span class="product-label label-top">Top</span>
                                                 <a href="product.html">
-                                                    <img src="assets/images/products/product-11.jpg" alt="Product image" class="product-image">
+                                                    <img src="{{ url('') }}/assets/images/products/product-11.jpg" alt="Product image" class="product-image">
                                                 </a>
 
                                                 <div class="product-action-vertical">
@@ -343,14 +359,14 @@
 
                                                 <div class="product-nav product-nav-thumbs">
                                                     <a href="#" class="active">
-                                                        <img src="assets/images/products/product-11-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-11-thumb.jpg" alt="product desc">
                                                     </a>
                                                     <a href="#">
-                                                        <img src="assets/images/products/product-11-2-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-11-2-thumb.jpg" alt="product desc">
                                                     </a>
 
                                                     <a href="#">
-                                                        <img src="assets/images/products/product-11-3-thumb.jpg" alt="product desc">
+                                                        <img src="{{ url('') }}/assets/images/products/product-11-3-thumb.jpg" alt="product desc">
                                                     </a>
                                                 </div><!-- End .product-nav -->
                                             </div><!-- End .product-body -->
@@ -361,7 +377,7 @@
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
                                                 <a href="product.html">
-                                                    <img src="assets/images/products/product-10.jpg" alt="Product image" class="product-image">
+                                                    <img src="{{ url('') }}/assets/images/products/product-10.jpg" alt="Product image" class="product-image">
                                                 </a>
 
                                                 <div class="product-action-vertical">
@@ -397,7 +413,7 @@
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
                                                 <a href="product.html">
-                                                    <img src="assets/images/products/product-12.jpg" alt="Product image" class="product-image">
+                                                    <img src="{{ url('') }}/assets/images/products/product-12.jpg" alt="Product image" class="product-image">
                                                 </a>
 
                                                 <div class="product-action-vertical">
