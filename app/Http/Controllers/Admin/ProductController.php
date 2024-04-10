@@ -149,6 +149,16 @@ class ProductController extends Controller
         
     }
 
+    public function delete($id)
+    {
+        //
+        $product = Product::getSingle($id);
+        $product->is_delete = 1;
+        $product->save();
+        
+        return redirect()->back()->with('success', 'Product successfully Deleted');
+    }
+
     public function image_delete($id)
     {
         //

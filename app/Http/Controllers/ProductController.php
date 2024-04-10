@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,9 @@ class ProductController extends Controller
 
             $data['getSubCategory'] = $getSubCategory;
             $data['getCategory'] = $getCategory;
+
+            $data['getProduct'] = Product::getproduct($getCategory->id, $getSubCategory->id);
+            
             return view('product.list',$data);
         }
 
@@ -31,6 +35,8 @@ class ProductController extends Controller
             $data['meta_title'] = $getCategory->meta_title;
             $data['meta_description'] = $getCategory->meta_description;
             $data['meta_keywords'] = $getCategory->meta_keywords;
+
+            $data['getProduct'] = Product::getproduct($getCategory->id);
 
             return view('product.list',$data);
         }
