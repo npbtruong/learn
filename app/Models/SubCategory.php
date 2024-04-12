@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -40,5 +41,13 @@ class SubCategory extends Model
         return self::where('slug', '=', $slug)
                 ->where('sub_categories.is_delete','=',0)
                 ->where('sub_categories.status','=',0)->first();
+    }
+
+    public function totalProducts()
+    {
+        return $this->hasMany(Product::class, 'sub_category_id')
+            ->where('is_delete', 0)
+            ->where('status', 0)
+            ->count();
     }
 }
