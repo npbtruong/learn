@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('styles')
     <link rel="stylesheet" href="{{ url('assets/css/plugins/nouislider/nouislider.css') }}">
+	<style type="text/css">
+		.active-color {
+			border: 3px solid #000 !important;
+		}
+	</style>
 @endsection
 @section('content')
 <main class="main">
@@ -50,8 +55,9 @@
                 					<div class="toolbox-sort">
                 						<label for="sortby">Sort by:</label>
                 						<div class="select-custom">
-											<select name="sortby" id="sortby" class="form-control">
-												<option value="popularity" selected="selected">Most Popular</option>
+											<select name="sortby" id="sortby" class="form-control ChangeSortBy">
+												<option value="" >Select</option>
+												<option value="popularity" >Most Popular</option>
 												<option value="rating">Most Rated</option>
 												<option value="date">Date</option>
 											</select>
@@ -114,6 +120,14 @@
 								
                 		</div><!-- End .col-lg-9 -->
                 		<aside class="col-lg-3 order-lg-first">
+							<form id="FilterForm" method="post" action="">
+								<input type="text" name="sub_category_id" id="get_sub_category_id">
+								<input type="text" name="brand_id" id="get_brand_id">
+								<input type="text" name="color_id" id="get_color_id">
+								<input type="text" name="sort_by_id" id="get_sort_by_id">
+								
+							</form>
+
                 			<div class="sidebar sidebar-shop">
                 				<div class="widget widget-clean">
                 					<label>Filters:</label>
@@ -134,7 +148,7 @@
 													
 												<div class="filter-item">
 													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-{{ $f_category->id }}">
+														<input type="checkbox" class="custom-control-input ChangeCategory" value="{{ $f_category->id }}" id="cat-{{ $f_category->id }}">
 														<label class="custom-control-label" for="cat-{{ $f_category->id }}">{{ $f_category->name }}</label>
 													</div><!-- End .custom-checkbox -->
 													<span class="item-count">{{ $f_category->totalProducts() }}</span>
@@ -186,7 +200,7 @@
 											<div class="filter-colors">
 												@foreach ($getColor as $f_color)
 
-												<a href="javascript:;" style="background: {{ $f_color->code }};"><span class="sr-only">{{ $f_color->name }}</span></a>
+												<a href="javascript:;" id="{{ $f_color->id }}" class="ChangeColor" data-val="0" style="background: {{ $f_color->code }};"><span class="sr-only">{{ $f_color->name }}</span></a>
 
 												@endforeach
 												
@@ -209,7 +223,7 @@
 													
 												<div class="filter-item">
 													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="brand-{{ $f_brand->id }}">
+														<input type="checkbox" class="custom-control-input ChangeBrand" value="{{ $f_brand->id }}" id="brand-{{ $f_brand->id }}">
 														<label class="custom-control-label" for="brand-{{ $f_brand->id }}">{{ $f_brand->name }}</label>
 													</div><!-- End .custom-checkbox -->
 												</div><!-- End .filter-item -->
@@ -251,4 +265,68 @@
 	<script src="{{ url('assets/js/wNumb.js') }}"></script>
     <script src="{{ url('assets/js/bootstrap-input-spinner.js') }}"></script>
 	<script src="{{ url('assets/js/nouislider.min.js') }}"></script>
+
+	<script type="text/javascript">
+
+		$('.ChangeSortBy').change(function() {
+			var id = $(this).val();
+
+			$('#get_sort_by_id').val(id);
+		});
+
+		$('.ChangeCategory').change(function() {
+			var ids = '';
+			$('.ChangeCategory').each(function() {
+				if(this.checked)
+				{
+					var id = $(this).val();
+					ids += id+',';
+				}
+			});
+
+			$('#get_sub_category_id').val(ids);
+		});
+
+		$('.ChangeBrand').change(function() {
+			var ids = '';
+			$('.ChangeBrand').each(function() {
+				if(this.checked)
+				{
+					var id = $(this).val();
+					ids += id+',';
+				}
+			});
+
+			$('#get_brand_id').val(ids);
+		});
+		
+		$('.ChangeColor').click(function() {
+			var id = $(this).attr('id');
+			var status = $(this).attr('data-val');
+			if(status == 0)
+			{
+				$(this).attr('data-val', 1);
+				$(this).addClass('active-color');
+			}
+			else
+			{
+				$(this).attr('data-val', 0);
+				$(this).removeClass('active-color');
+			}
+
+			var ids = '';
+			$('.ChangeColor').each(function() {
+				var status = $(this).attr('data-val');
+				if(status == 1)
+				{
+					var id = $(this).attr('id');
+					ids += id+',';
+				}
+			});
+
+			$('#get_color_id').val(ids);
+		});
+
+
+	</script>
 @endsection
